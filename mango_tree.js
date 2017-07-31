@@ -6,16 +6,24 @@ class MangoTree {
 
   // Initialize a new MangoTree
   constructor() {
+    this.umur = 0;
+    this.tinggi = 0;
+    this.kapBuah = 0;
+    this.kapBuahpetik = 0;
+    this.kondisi = "Bad or good"
   }
 
   getAge() {
+    return this.umur
   }
   getHeight() {
-
+    return this.tinggi
   }
   getFruits() {
+    return this.kapBuah
   }
   getHealtyStatus() {
+    return this.kondisi
   }
 
 
@@ -23,6 +31,12 @@ class MangoTree {
 
   // Grow the tree
   grow() {
+    this.umur++
+    if(this.umur<=10){
+      this.tinggi++
+    }else if (this.umur == 12){
+      t
+    }
   }
 
   // Produce some mangoes
@@ -38,6 +52,7 @@ class MangoTree {
 class Mango {
   // Produce a mango
   constructor() {
+    this.quality = good;
   }
 }
 
