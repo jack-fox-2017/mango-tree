@@ -109,6 +109,21 @@ class Apple {
   }
 }
 
+class PearTree extends FruitTree {
+
+  // Initialize a new MangoTree
+  constructor(umur =0,tinggi =0,sehat = true, nama='Pear') { // variables yang ada d parent
+    super(umur,tinggi,sehat, nama) // variables yang ada d parent
+    this.maxCap=50;
+    this.maxTinggi = 21;
+  }
+}
+
+class Pear {
+  // Produce a mango
+  constructor() {
+  }
+}
 
 let tree = new MangoTree()
 console.log(`The ${tree.nama} tree is alive! :smile:`)
@@ -132,4 +147,16 @@ console.log(`The ${appleTree.nama} tree is alive! :smile:`)
   } while (appleTree.healthyStatus != false)
 
 console.log(`The ${appleTree.nama} tree has met its end. :sad:`);
+console.log('---------------------------------------------------------');
+
+let pearTree = new PearTree()
+console.log(`The ${pearTree.nama} tree is alive! :smile:`)
+ do {
+  pearTree.grow();
+  pearTree.produceFruit();
+  pearTree.harvest();
+  console.log(`[Year ${pearTree.umur} Report] Height = ${pearTree.Height} | Fruits harvested = ${pearTree.harvested}`)
+  } while (pearTree.healthyStatus != false)
+
+console.log(`The ${pearTree.nama} tree has met its end. :sad:`);
 console.log('---------------------------------------------------------');
