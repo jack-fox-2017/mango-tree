@@ -29,8 +29,8 @@ class FruitTree {
 
   // Grow the tree
   grow() {
-    if (this.umur < 20) {
-      if (this.umur == 19) {this.sehat = false;}
+    if (this.umur < this.maxUmur) {
+      if (this.umur == (this.maxUmur-1)) {this.sehat = false;}
       this.umur++;
       if (this.tinggi < this.maxTinggi) {
         this.tinggi+= (Math.random()*2);
@@ -86,6 +86,7 @@ class MangoTree extends FruitTree {
     super(umur,tinggi,sehat, fruit, nama) // variables yang ada d parent
     this.maxCap=30;
     this.maxTinggi = 15;
+    this.maxUmur =20;
   }
 }
 
@@ -102,6 +103,7 @@ class AppleTree extends FruitTree {
     super(umur,tinggi,sehat, fruit,nama) // variables yang ada d parent
     this.maxCap=20;
     this.maxTinggi = 15;
+    this.maxUmur =10;
   }
 }
 
@@ -118,6 +120,7 @@ class PearTree extends FruitTree {
     super(umur,tinggi,sehat, fruit,nama) // variables yang ada d parent
     this.maxCap=50;
     this.maxTinggi = 21;
+    this.maxUmur =20;
   }
 }
 
