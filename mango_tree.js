@@ -6,16 +6,25 @@ class MangoTree {
 
   // Initialize a new MangoTree
   constructor() {
+    this.umur = 0;
+    this.tinggi = 0;
+    this.maxBuah = 0;
+    this.tampBuah = [];
+    this.jmlBuahdipetik = 0;
+    this.status = true;
   }
 
   getAge() {
+    return this.umur;
   }
   getHeight() {
-
+    return this.tinggi;
   }
   getFruits() {
+    return this.tampBuah;
   }
   getHealtyStatus() {
+    return this.status;
   }
 
 
