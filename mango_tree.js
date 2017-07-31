@@ -38,12 +38,13 @@ class MangoTree {
 
   // Grow the tree
   grow() {
-    var num =  Math.random()*1
+
     if (this.getAge() < 20) {
+      var num =  Math.random()*1
       this.age++;
       this.height += num
     } else {
-      return 'The tree is dead'
+      this.healthyStatus = false
     }
   }
 
@@ -69,7 +70,7 @@ class MangoTree {
     this.harvested= `${this.collected.length} (good: ${good}, bad: ${bad})`;
     this.collected = []
   }
-}
+}//end of Class
 
 class Mango {
   // Produce a mango
@@ -78,10 +79,15 @@ class Mango {
   }
 
   checkQuality() {
-    if(true) {return 'good'}
-    else {return 'bad'}
+    let random = Math.floor(Math.random() * 2)
+    if (random == 1) {
+      return 'good'
+    }
+    else {
+      return 'bad'
+    }
   }
-}
+} //end of Class
 
 
   // * driver code untuk release 0
