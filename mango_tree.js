@@ -2,17 +2,18 @@
 
 // Release 2
 class FruitTree {
-  constructor(age=0, height=0, maxFruit=10, maxGrow=15, maxAge=20, minAgeProduce=2, healthyStatus=true){
+  constructor(name, age, height, maxFruit, healthyStatus){
+    this._name = name;
     this._age = age;
     this._height = height;
-    this._maxGrow = maxGrow;
-    this._maxAge = maxAge;
+    // this._maxGrow = maxGrow;
+    // this._maxAge = maxAge;
     this._maxFruit = maxFruit;
-    this._minAgeProduce = minAgeProduce;
-    this._healthyStatus = healthyStatus;
+    // this._minAgeProduce = minAgeProduce;
+    // this._healthyStatus = healthyStatus;
     this._fruitHarvested = [];
-    this._good = 0;
-    this._bad = 0;
+    // this._good = 0;
+    // this._bad = 0;
   }
 
   getAge() {
@@ -44,10 +45,9 @@ class FruitTree {
 
   // Produce some fruits
   produceFruits() {
-    if(this._age>=this._minAgeProduce){
-      for(let i=0; i<Math.floor(Math.random() * this._maxFruit); i++){
-        this._fruitHarvested.push(new Fruit());
-      }
+    let rand = Math.floor(Math.random()*this._maxFruit)
+    for (let i = 0; i < rand; i++) {
+      this._fruitHarvested.push(new Mango())
     }
   }
 
@@ -88,8 +88,8 @@ class Fruit {
 
 class MangoTree extends FruitTree{
   // Initialize a new MangoTree
-  constructor() {
-    super(0,0,10,15,20,2);
+  constructor(name, age, height, fruits, hStatus) {
+    super(name, age, height, fruits, hStatus);
     //this._name = 'Mango';
   }
 }
@@ -114,8 +114,8 @@ class Mango extends Fruit{
 // Release 1
 class AppleTree extends FruitTree{
   // Initialize a new AppleTree
-  constructor() {
-    super(0,0,13,15,25,3);
+  constructor(name, age, height, fruits, hStatus) {
+    super(name, age, height, fruits, hStatus);
     //this._name = 'Apple';
   }
 }
@@ -127,8 +127,8 @@ class Apple extends Fruit{
 }
 
 class PearTree extends FruitTree{
-  constructor(){
-    super(0,0,15,18,30,1);
+  constructor(name, age, height, fruits, hStatus){
+    super(name, age, height, fruits, hStatus);
     //this._name = 'Pear';
   }
 }
@@ -140,31 +140,89 @@ class Pear extends Fruit{
 }
 
 //driver code release 2
-let pearTree = new PearTree();
-let mangoTree = new MangoTree();
-let appleTree = new AppleTree();
-
-while (mangoTree._healthyStatus != false) {
-  mangoTree.grow();
-  mangoTree.harvest();
-  mangoTree.produceFruits();
-  console.log(`[Year ${mangoTree._age} Report] Height = ${mangoTree._height} m | ${MangoTree.name} harvested = ${mangoTree._fruits} (${mangoTree._good} good, ${mangoTree._bad} bad)`);
-};
-while (appleTree._healthyStatus != false) {
-  appleTree.grow();
-  appleTree.harvest();
-  appleTree.produceFruits();
-  console.log(`[Year ${appleTree._age} Report] Height = ${appleTree._height} m | ${AppleTree.name} harvested = ${appleTree._fruits} (${appleTree._good} good, ${appleTree._bad} bad)`);
-};
-while (pearTree._healthyStatus != false) {
-  pearTree.grow();
-  pearTree.harvest();
-  pearTree.produceFruits();
-  console.log(`[Year ${pearTree._age} Report] Height = ${pearTree._height} m | ${PearTree.name} harvested = ${pearTree._fruits} (${pearTree._good} good, ${pearTree._bad} bad)`);
-};
+// let pearTree = new PearTree();
+// let mangoTree = new MangoTree();
+// let appleTree = new AppleTree();
+//
+// while (mangoTree._healthyStatus != false) {
+//   mangoTree.grow();
+//   mangoTree.harvest();
+//   mangoTree.produceFruits();
+//   console.log(`[Year ${mangoTree._age} Report] Height = ${mangoTree._height} m | ${MangoTree.name} harvested = ${mangoTree._fruits} (${mangoTree._good} good, ${mangoTree._bad} bad)`);
+// };
+// while (appleTree._healthyStatus != false) {
+//   appleTree.grow();
+//   appleTree.harvest();
+//   appleTree.produceFruits();
+//   console.log(`[Year ${appleTree._age} Report] Height = ${appleTree._height} m | ${AppleTree.name} harvested = ${appleTree._fruits} (${appleTree._good} good, ${appleTree._bad} bad)`);
+// };
+// while (pearTree._healthyStatus != false) {
+//   pearTree.grow();
+//   pearTree.harvest();
+//   pearTree.produceFruits();
+//   console.log(`[Year ${pearTree._age} Report] Height = ${pearTree._height} m | ${PearTree.name} harvested = ${pearTree._fruits} (${pearTree._good} good, ${pearTree._bad} bad)`);
+// };
 
 // Release 3
-class TreeGrove {}
+class TreeGrove {
+  constructor(){
+    this._tree = [];
+  }
+  inputTree(name, age, height, fruits, hStatus){
+    if(name == 'MangoTree'){
+      this._tree.push(new MangoTree(name, age, height, fruits, hStatus));
+    }
+    if(name == 'AppleTree'){
+      this._tree.push(new AppleTree(name, age, height, fruits, hStatus));
+    }
+    if(name == 'PearTree'){
+      this._tree.push(new PearTree(name, age, height, fruits, hStatus));
+    }
+  }
+  nextYear(){
+    for(let i=0; i<this._tree.length; i++){
+      this._tree[i].grow();
+      this._tree[i].harvest();
+      this._tree[i].produceFruits();
+    }
+  }
+  showAges(){
+    for(let i=0; i<this._tree.length; i++){
+      console.log(this._tree[i]._age +' year(s)')
+    }
+  }
+  showTrees(){
+    for(let i=0; i<this._tree.length; i++){
+      console.log('showTree: '+this._tree[i]._name)
+    }
+  }
+  matureTrees(){
+    for(let i=0; i<this._tree.length; i++){
+      if(this._tree[i]._fruitHarvested.length > 0 && this._tree[i].healthyStatus != false){
+        console.log(this._tree[i]._name + ' is mature');
+      }
+    }
+  }
+  deadTrees(){
+    for(let i=0; i<this._tree.length; i++){
+      if(this._tree[i].healthyStatus == false){
+        console.log(this._tree[i]._name + ' is dead');
+      }
+    }
+  }
+}
+
+//driver code release 3
+let grove = new TreeGrove();
+grove.inputTree('MangoTree', 3, 1.8, 7, true);
+grove.inputTree('MangoTree', 5, 2.4, 12, true);
+grove.inputTree('AppleTree', 5, 1.2, 5, true);
+grove.inputTree('PearTree', 7, 2, 15, true);
+grove.nextYear();
+grove.showAges();
+grove.showTrees();
+grove.matureTrees();
+grove.deadTrees();
 
 //driver code release 1
 // let _mangoTree = new MangoTree(0,0,0,true);
