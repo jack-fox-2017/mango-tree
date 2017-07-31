@@ -286,7 +286,9 @@ class TreeGrove {
 
   nextYear() {
     for (var i = 0; i < this.treeList.length; i++) {
+      var random = Math.floor(Math.random() * 10 + 1)
       this.treeList[i].grow()
+      this.treeList[i].fruit = random
     }
   }
 
@@ -324,6 +326,7 @@ grove.inputTree('PearTree', 6, 1, 1, true);
 
 
 grove.showAges()
+grove.showTree()
 grove.nextYear()
 grove.showAges()
 grove.showTree()
