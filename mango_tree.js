@@ -93,12 +93,12 @@ class Fruit {
 class MangoTree extends FruitTree {
 
   // Initialize a new MangoTree
-  constructor() {
+  constructor(umur, tinggi, buah, status) {
     super()
-    this.age = 0;
-    this.height = 0;
-    this.status = true;
-    this.fruit = [];
+    this.age = umur;
+    this.height = tinggi;
+    this.status = status;
+    this.fruit = buah;
   }
   getAge() {
     return this.age
@@ -112,7 +112,9 @@ class MangoTree extends FruitTree {
   getHealtyStatus() {
     return this.status
   }
-
+  nama() {
+    return 'Mango Tree'
+  }
   grow() {
     super.grow()
   }
@@ -151,12 +153,12 @@ class Mango extends Fruit {
 class AppleTree extends FruitTree {
 
   // Initialize a new MangoTree
-  constructor() {
+  constructor(umur, tinggi, buah, status) {
     super()
-    this.age = 0;
-    this.height = 0;
-    this.status = true;
-    this.fruit = [];
+    this.age = umur;
+    this.height = tinggi;
+    this.status = status;
+    this.fruit = buah;
   }
   getAge() {
     return this.age
@@ -170,7 +172,9 @@ class AppleTree extends FruitTree {
   getHealtyStatus() {
     return this.status
   }
-
+  nama() {
+    return 'Apple Tree'
+  }
   grow() {
     super.grow()
   }
@@ -194,16 +198,13 @@ class Apple extends Fruit {
 }
 
 
-
-
-
 class PearTree extends FruitTree {
-  constructor() {
+  constructor(umur, tinggi, buah, status) {
     super()
-    this.age = 0;
-    this.height = 0;
-    this.status = true;
-    this.fruit = [];
+    this.age = umur;
+    this.height = tinggi;
+    this.status = status;
+    this.fruit = buah;
   }
   getAge() {
     return this.age
@@ -217,7 +218,9 @@ class PearTree extends FruitTree {
   getHealtyStatus() {
     return this.status
   }
-
+  nama() {
+    return 'Pear Tree'
+  }
   grow() {
     super.grow()
   }
@@ -239,12 +242,12 @@ class Pear extends Fruit {
   }
 }
 
-let pearTree = new PearTree()
-let pear = new Pear()
-let mangoTree = new MangoTree()
-let mango = new Mango()
-let appleTree = new AppleTree()
-let apple = new Apple()
+// let pearTree = new PearTree()
+// let pear = new Pear()
+// let mangoTree = new MangoTree()
+// let mango = new Mango()
+// let appleTree = new AppleTree()
+// let apple = new Apple()
 
 // while (mangoTree.status != false) {
 //   mangoTree.grow()
@@ -269,34 +272,44 @@ class TreeGrove {
     this.treeList = []
   }
   inputTree(namaP, umurP, tinggiP, buahP, statusP) {
-    var pohon = {}
-    pohon['nama'] = namaP
-    pohon['umur'] = umurP
-    pohon['tinggi'] = tinggiP
-    pohon['buah'] = buahP
-    pohon['status'] = statusP
-    this.treeList.push(pohon)
+    if (namaP == 'MangoTree') {
+      this.treeList.push(new MangoTree(umurP, tinggiP, buahP, statusP))
+    }
+    if (namaP == 'AppleTree') {
+      this.treeList.push(new AppleTree(umurP, tinggiP, buahP, statusP))
+    }
+    if (namaP == 'PearTree') {
+      this.treeList.push(new PearTree(umurP, tinggiP, buahP, statusP))
+    }
     console.log(`${namaP} sudah di tambahkan ke daftar pohon`);
   }
-  showAges() {
+
+  nextYear() {
     for (var i = 0; i < this.treeList.length; i++) {
-      console.log(this.treeList[i].umur);
+      this.treeList[i].grow()
     }
   }
+
+  showAges() {
+    for (var i = 0; i < this.treeList.length; i++) {
+      console.log(this.treeList[i].age);
+    }
+  }
+
   showTree() {
     console.log(this.treeList);
   }
   matureTree() {
     for (var i = 0; i < this.treeList.length; i++) {
-      if (this.treeList[i].buah > 0 && this.treeList[i].status !== false) {
-        console.log(`${this.treeList[i].nama} sedang berbuah`);
+      if (this.treeList[i].fruit > 0 && this.treeList[i].status !== false) {
+        console.log(`${this.treeList[i].nama()} sedang berbuah`);
       }
     }
   }
   deadTree() {
     for (var i = 0; i < this.treeList.length; i++) {
       if (this.treeList[i].status == false) {
-        console.log(`${this.treeList[i].nama} sudah mati`);
+        console.log(`${this.treeList[i].nama()} sudah mati`);
       }
     }
   }
@@ -304,12 +317,14 @@ class TreeGrove {
 
 var grove = new TreeGrove()
 
-grove.inputTree('pohon jengkol', 2, 1.3, 5, true);
-grove.inputTree('pohon duren', 4, 1.3, 5, false);
-grove.inputTree('pohon pohonan', 1, 1.3, 0, true);
-grove.inputTree('pohon mangga', 6, 1.3, 5, false);
-grove.inputTree('pohon kumis kucing', 10, 1.3, 5, true);
+grove.inputTree('MangoTree', 2, 1.3, 5, true);
+grove.inputTree('MangoTree', 24, 2.3, 9, true);
+grove.inputTree('AppleTree', 7, 3.3, 6, true);
+grove.inputTree('PearTree', 6, 1, 1, true);
 
+
+grove.showAges()
+grove.nextYear()
 grove.showAges()
 grove.showTree()
 grove.matureTree()
