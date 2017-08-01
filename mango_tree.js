@@ -6,7 +6,7 @@ class FruitTree {
     this._name = name
     this._age = age
     this._height = height
-    
+
     this._fruits = []
     this._harvested = null;
 
@@ -37,16 +37,6 @@ class FruitTree {
       this._height += Math.random()*2
       if (this._height > this._maxHeightGrow)
         this._height = this._maxHeightGrow
-    }
-
-    return this
-  }
-
-  // Produce some mangoes
-  produceFruits() {
-    let count = Math.floor(Math.random()*this._fruitMax)
-    for (let i = 0; i < count; i++) {
-      this._fruits.push(new Mango())
     }
 
     return this
@@ -92,8 +82,18 @@ class MangoTree extends FruitTree {
 
     for (let i = 0; i < fruits; i++)
       this._fruits.push(new Mango())
-    
+
     this._age = isHealthy ? this._age : this.maxAge
+  }
+
+  // Produce some mangoes
+  produceFruits() {
+    let count = Math.floor(Math.random()*this._fruitMax)
+    for (let i = 0; i < count; i++) {
+      this._fruits.push(new Mango())
+    }
+
+    return this
   }
 
 }
@@ -117,6 +117,16 @@ class AppleTree extends FruitTree {
 
     this._age = isHealthy ? this._age : this.maxAge
   }
+
+  // Produce some mangoes
+  produceFruits() {
+    let count = Math.floor(Math.random()*this._fruitMax)
+    for (let i = 0; i < count; i++) {
+      this._fruits.push(new Apple())
+    }
+
+    return this
+  }
 }
 
 class Apple extends Fruit {
@@ -137,6 +147,16 @@ class PearTree extends FruitTree {
       this._fruits.push(new Pear())
 
     this._age = isHealthy ? this._age : this.maxAge
+  }
+
+  // Produce some mangoes
+  produceFruits() {
+    let count = Math.floor(Math.random()*this._fruitMax)
+    for (let i = 0; i < count; i++) {
+      this._fruits.push(new Pear())
+    }
+
+    return this
   }
 }
 
@@ -165,7 +185,7 @@ class TreeGrove {
     let tree;
 
     switch(name) {
-      case 'MangoTree': 
+      case 'MangoTree':
         tree = new MangoTree(name, age, height, fruits, isHealthy)
         break;
       case 'AppleTree':
